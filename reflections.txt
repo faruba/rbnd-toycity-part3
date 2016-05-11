@@ -1,0 +1,34 @@
+*How long did you spend working on this project?
+about 4 hours -_-!
+*What was the most rewarding challenge you conquered?
+I think it is the process of refactoring the code. I implement there class one by one.
+when I implement the second one. they are nealy same. so I abstract add_product, checking and add to array move up
+and finally I found that add , all ,find_by should move to parent class.
+I want to abstract this three function . add is easy. but all and find_by are class function.
+I still don't figure it out
+maybe some metaprogramming
+
+
+*What two additional features did you build?  Why? 
+1 print item in stock . it will help customer find out whether the product they want to buy is exsists or not
+2 purchase history. Where dose my money go? this is the answer
+
+*Where do you still have room to grow?
+yes, I should read some book about ruby. there are lots of details I still don't know
+
+I have some questions. could you help me? thank you
+why differentiate between block and function ? 
+def high_order_function(oprator, *args) 
+  oprator(args)
+end
+def high_order_function (arg, &block) 
+	block.call(arg)
+	#yeild just a syntax suger ?
+end
+
+I guess
+block is more like a closure (function + envirment) ?
+function just don't have envirment  ?
+
+
+
