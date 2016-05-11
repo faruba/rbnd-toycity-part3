@@ -2,12 +2,13 @@ require_relative "./errors"
 require_relative "./set"
 
 class Product <  SetContainer
+	@@products = []
 	attr_reader :title , :price, :stock
 	def initialize(options={})
 		@title = options[:title]
 		@price = options[:price]
 		@stock = options[:stock]
-		add_to_products(self){ |item |
+		SetContainer.add_to(@@products, self){ |item |
 			raise DuplicateProductError , "#{@title} already exists."
 		}
 	end
@@ -20,6 +21,9 @@ class Product <  SetContainer
 		@stock > 0
 	end
 
+	def self.all
+		@@products
+	end
 	def self.find_by_title(title)
 		Product.all.select { |product| product.title.eql?(title)}[0]
 	end

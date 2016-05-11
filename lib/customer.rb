@@ -1,26 +1,26 @@
 require_relative "./set"
 
-class Custom <  SetContainer
+class Customer<  SetContainer
+	@@items = []
 	attr_reader :name
-
 	def initialize(options={})
 		@name = options[:name]
+		SetContainer.add_to(@@items, self){ |custom|
+			raise DuplicateProductError , "#{@name} already exists."
+		}
+
 	end
 
-	def find_by_name(name)
+	def is_same? (custom)
+		return @name.eql?(custom.name)
+	end
+
+	def self.find_by_name(name)
+		@@items.select { |custom| custom.name.eql?(name)}[0]
+	end
+
+	def self.all
+		@@items
 	end
 end
-
-#Customer.new(name: "Walter Latimer")
-#Customer.new(name: "Julia Van Cleve")
-
-# puts Customer.all.count # Should return 2
-
-# Customer.new(name: "Walter Latimer")
-# Should return DuplicateCustomerError: 'Walter Latimer' already exists.
-
-# walter = Customer.find_by_name("Walter Latimer")
-
-# puts walter.name # Should return "Walter Latimer"
-
 
