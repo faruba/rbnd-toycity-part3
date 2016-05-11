@@ -1,46 +1,27 @@
 require_relative "./errors"
+require_relative "./set"
 
-class Product
+class Product <  SetContainer
 	attr_reader :title , :price, :stock
-	@@products = []
 	def initialize(options={})
 		@title = options[:title]
 		@price = options[:price]
 		@stock = options[:stock]
-		add_to_products
-	end
-
-	def is_same? (title)
-		#?? 
-		#def is_same? (product)
-		#	return (@title.equal?(product.title))
-		#end
-		#if Product.all.any? { |product| product.is_same?(self)}
-		# don't work. get error: is_same?': undefined local variable or method title.
-		# title is an attribute  and `puts (product.title)`  do not get any error
-		return @title.eql?(title)
-	end
-
-	def add_to_products
-		# much pretty >> Product.all.any? Product.==
-		# or I miss something? 
-		if Product.all.any? { |product| product.is_same?(@title)}
+		add_to_products(self){ |item |
 			raise DuplicateProductError , "#{@title} already exists."
-		else
-			@@products << self 
-		end
+		}
+	end
+
+	def is_same? (product)
+		return @title.eql?(product.title)
 	end
 
 	def in_stock?
 		@stock > 0
 	end
-	def self.all
-		@@products
-	end
 
-	#how do I DRY? same code in add_to_products
 	def self.find_by_title(title)
-		Product.all.select { |product| product.is_same?(title)}[0]
+		Product.all.select { |product| product.title.eql?(title)}[0]
 	end
 
 	def self.in_stock
