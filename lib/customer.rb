@@ -19,6 +19,10 @@ class Customer<  SetContainer
 		Transaction.new(self,product) 
 	end
 
+	def purchase_history
+		Transaction.find_by_customer(self)
+	end
+
 	def self.find_by_name(name)
 		@@items.select { |custom| custom.name.eql?(name)}[0]
 	end

@@ -29,6 +29,21 @@ class Product <  SetContainer
 		end
 	end
 
+	def print
+		puts "title : #{@title}"
+		puts "price : #{@price}"
+		puts "stock : #{@stock}"
+	end
+
+	def self.print_in_stock
+		puts "=======all stuff =========="
+		Product.in_stock.each do |product|
+			product.print
+			puts "==========================="
+		end
+	end
+
+
 	def self.all
 		@@products
 	end

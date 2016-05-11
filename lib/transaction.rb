@@ -23,6 +23,9 @@ class Transaction < SetContainer
 	def self.find(id)
 		@@transactions.select { |trans| trans.id == id}[0]
 	end
+	def self.find_by_customer(customer)
+		@@transactions.select { |trans| trans.customer == customer}
+	end
 end
 
 
