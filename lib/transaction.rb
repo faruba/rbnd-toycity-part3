@@ -9,6 +9,7 @@ class Transaction < SetContainer
 		@id = @@uuid
 		@customer = customer 
 		@product = product
+		product.sell
 		SetContainer.add_to(@@transactions, self)
 	end
 
@@ -18,6 +19,9 @@ class Transaction < SetContainer
 
 	def self.all
 		@@transactions
+	end
+	def self.find(id)
+		@@transactions.select { |trans| trans.id == id}[0]
 	end
 end
 

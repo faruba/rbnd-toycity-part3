@@ -21,6 +21,14 @@ class Product <  SetContainer
 		@stock > 0
 	end
 
+	def sell
+		if in_stock?
+			@stock -= 1
+		else
+			raise OutOfStockError, "#{@title} is out of stock."
+		end
+	end
+
 	def self.all
 		@@products
 	end

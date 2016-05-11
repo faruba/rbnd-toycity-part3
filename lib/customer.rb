@@ -15,6 +15,10 @@ class Customer<  SetContainer
 		return @name.eql?(custom.name)
 	end
 
+	def purchase(product)
+		Transaction.new(self,product) 
+	end
+
 	def self.find_by_name(name)
 		@@items.select { |custom| custom.name.eql?(name)}[0]
 	end
