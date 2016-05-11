@@ -42,4 +42,8 @@ class Product
 	def self.find_by_title(title)
 		Product.all.select { |product| product.is_same?(title)}[0]
 	end
+
+	def self.in_stock
+		Product.all.select { |product| product.in_stock?}
+	end
 end
